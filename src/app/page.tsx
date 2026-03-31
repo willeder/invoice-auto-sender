@@ -1,65 +1,78 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col gap-8">
+      <div>
+        <h1 className="text-2xl font-semibold tracking-tight">
+          ダッシュボード
+        </h1>
+        <p className="mt-2 text-sm text-zinc-600">
+          当月の送信状況サマリーと直近ログ（モック）
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="rounded-xl border border-zinc-200 bg-white p-5">
+          <div className="text-sm text-zinc-600">今月の送信</div>
+          <div className="mt-2 text-3xl font-semibold">12 件</div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="rounded-xl border border-zinc-200 bg-white p-5">
+          <div className="text-sm text-zinc-600">未送信</div>
+          <div className="mt-2 text-3xl font-semibold">3 件</div>
         </div>
-      </main>
+        <div className="rounded-xl border border-zinc-200 bg-white p-5">
+          <div className="text-sm text-zinc-600">エラー</div>
+          <div className="mt-2 text-3xl font-semibold text-red-600">1 件</div>
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-zinc-200 bg-white">
+        <div className="border-b border-zinc-200 px-5 py-4">
+          <div className="text-sm font-medium">直近の送信履歴</div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="text-left text-zinc-600">
+              <tr className="border-b border-zinc-200">
+                <th className="px-5 py-3 font-medium">ステータス</th>
+                <th className="px-5 py-3 font-medium">取引先</th>
+                <th className="px-5 py-3 font-medium">金額</th>
+                <th className="px-5 py-3 font-medium">日時</th>
+                <th className="px-5 py-3 font-medium">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-zinc-100">
+                <td className="px-5 py-3">✅ sent</td>
+                <td className="px-5 py-3">株式会社ABC</td>
+                <td className="px-5 py-3">¥110,000</td>
+                <td className="px-5 py-3">2026-04-01 00:00</td>
+                <td className="px-5 py-3 text-zinc-500">—</td>
+              </tr>
+              <tr className="border-b border-zinc-100">
+                <td className="px-5 py-3">✅ sent</td>
+                <td className="px-5 py-3">山田商事</td>
+                <td className="px-5 py-3">¥55,000</td>
+                <td className="px-5 py-3">2026-04-01 00:00</td>
+                <td className="px-5 py-3 text-zinc-500">—</td>
+              </tr>
+              <tr>
+                <td className="px-5 py-3">❌ failed</td>
+                <td className="px-5 py-3">テスト株式会社</td>
+                <td className="px-5 py-3">¥33,000</td>
+                <td className="px-5 py-3">2026-04-01 00:00</td>
+                <td className="px-5 py-3">
+                  <a
+                    href="/invoices"
+                    className="rounded-md bg-zinc-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-zinc-800"
+                  >
+                    再送（モック）
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
