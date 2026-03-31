@@ -40,7 +40,7 @@ async function getInvoice(id: string): Promise<{
   items: Item[];
   logs: Log[];
 } | null> {
-  const res = await fetch(`${getBaseUrlFromHeaders()}/api/invoices/${id}`, {
+  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/invoices/${id}`, {
     cache: "no-store",
   });
   if (!res.ok) return null;

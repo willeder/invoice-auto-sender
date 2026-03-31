@@ -13,7 +13,7 @@ type Client = {
 };
 
 async function getClients(): Promise<Client[]> {
-  const res = await fetch(`${getBaseUrlFromHeaders()}/api/clients`, {
+  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/clients`, {
     cache: "no-store",
   });
   if (!res.ok) return [];

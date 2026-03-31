@@ -18,7 +18,7 @@ type Settings = {
 };
 
 async function getSettings(): Promise<Settings | null> {
-  const res = await fetch(`${getBaseUrlFromHeaders()}/api/settings`, {
+  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/settings`, {
     cache: "no-store",
   });
   if (!res.ok) return null;

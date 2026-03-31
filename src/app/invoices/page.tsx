@@ -17,7 +17,7 @@ type Invoice = {
 };
 
 async function getInvoices(): Promise<Invoice[]> {
-  const res = await fetch(`${getBaseUrlFromHeaders()}/api/invoices`, {
+  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/invoices`, {
     cache: "no-store",
   });
   if (!res.ok) return [];

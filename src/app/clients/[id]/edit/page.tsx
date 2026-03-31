@@ -22,7 +22,7 @@ type Client = {
 };
 
 async function getClient(id: string): Promise<Client | null> {
-  const res = await fetch(`${getBaseUrlFromHeaders()}/api/clients/${id}`, {
+  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/clients/${id}`, {
     cache: "no-store",
   });
   if (!res.ok) return null;
