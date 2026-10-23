@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getBaseUrlFromHeaders } from "@/lib/baseUrl";
+import { getAppBaseUrl, getInternalFetchHeaders } from "@/lib/baseUrl";
 
 type Invoice = {
   id: string;
@@ -17,8 +17,9 @@ type Invoice = {
 };
 
 async function getInvoices(): Promise<Invoice[]> {
-  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/invoices`, {
+  const res = await fetch(`${await getAppBaseUrl()}/api/invoices`, {
     cache: "no-store",
+    headers: await getInternalFetchHeaders(),
   });
   if (!res.ok) return [];
   const data = (await res.json()) as { invoices: Invoice[] };
@@ -108,7 +109,7 @@ export default async function InvoicesPage() {
         <div className="text-sm font-medium">テスト用（モック）</div>
         <p className="mt-2 text-sm text-zinc-600">
           スケジューラー手動実行は <code className="font-mono">/api/scheduler/run</code>{" "}
-          を叩く想定です。
+          を <code className="font-mono">Authorization: Bearer $CRON_SECRET</code> 付きで叩く想定です。
         </p>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getBaseUrlFromHeaders } from "@/lib/baseUrl";
+import { getAppBaseUrl, getInternalFetchHeaders } from "@/lib/baseUrl";
 
 type Client = {
   id: string;
@@ -13,8 +13,9 @@ type Client = {
 };
 
 async function getClients(): Promise<Client[]> {
-  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/clients`, {
+  const res = await fetch(`${await getAppBaseUrl()}/api/clients`, {
     cache: "no-store",
+    headers: await getInternalFetchHeaders(),
   });
   if (!res.ok) return [];
   const data = (await res.json()) as { clients: Client[] };

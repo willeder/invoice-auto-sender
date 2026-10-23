@@ -25,7 +25,6 @@ export function ExtrasForm(props: { clientId: string }) {
 
   useEffect(() => {
     let cancelled = false;
-    setError(null);
     fetch(`/api/clients/${props.clientId}/extras?month=${encodeURIComponent(month)}`)
       .then(async (r) => {
         if (!r.ok) throw new Error(String(r.status));
@@ -33,6 +32,7 @@ export function ExtrasForm(props: { clientId: string }) {
       })
       .then((data) => {
         if (cancelled) return;
+        setError(null);
         setItems(data.items ?? []);
       })
       .catch(() => {

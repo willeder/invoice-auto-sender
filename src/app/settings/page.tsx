@@ -1,4 +1,4 @@
-import { getBaseUrlFromHeaders } from "@/lib/baseUrl";
+import { getAppBaseUrl, getInternalFetchHeaders } from "@/lib/baseUrl";
 import { SettingsForm } from "./settingsForm";
 
 type Settings = {
@@ -18,8 +18,9 @@ type Settings = {
 };
 
 async function getSettings(): Promise<Settings | null> {
-  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/settings`, {
+  const res = await fetch(`${await getAppBaseUrl()}/api/settings`, {
     cache: "no-store",
+    headers: await getInternalFetchHeaders(),
   });
   if (!res.ok) return null;
   const data = (await res.json()) as { settings: Settings };

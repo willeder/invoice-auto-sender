@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getBaseUrlFromHeaders } from "@/lib/baseUrl";
+import { getAppBaseUrl, getInternalFetchHeaders } from "@/lib/baseUrl";
 import { ClientForm } from "../../ClientForm";
 
 type Client = {
@@ -22,8 +22,9 @@ type Client = {
 };
 
 async function getClient(id: string): Promise<Client | null> {
-  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/clients/${id}`, {
+  const res = await fetch(`${await getAppBaseUrl()}/api/clients/${id}`, {
     cache: "no-store",
+    headers: await getInternalFetchHeaders(),
   });
   if (!res.ok) return null;
   const data = (await res.json()) as { client: Client };
