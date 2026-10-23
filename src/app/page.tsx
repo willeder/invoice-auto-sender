@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="flex flex-col gap-8">
@@ -61,12 +63,12 @@ export default function Home() {
                 <td className="px-5 py-3">¥33,000</td>
                 <td className="px-5 py-3">2026-04-01 00:00</td>
                 <td className="px-5 py-3">
-                  <a
+                  <Link
                     href="/invoices"
                     className="rounded-md bg-zinc-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-zinc-800"
                   >
                     再送（モック）
-                  </a>
+                  </Link>
                 </td>
               </tr>
             </tbody>

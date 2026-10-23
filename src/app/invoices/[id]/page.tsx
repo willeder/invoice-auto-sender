@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getBaseUrlFromHeaders } from "@/lib/baseUrl";
+import { getAppBaseUrl, getInternalFetchHeaders } from "@/lib/baseUrl";
 import { InvoiceActions } from "./InvoiceActions";
 
 type Invoice = {
@@ -40,8 +40,9 @@ async function getInvoice(id: string): Promise<{
   items: Item[];
   logs: Log[];
 } | null> {
-  const res = await fetch(`${await getBaseUrlFromHeaders()}/api/invoices/${id}`, {
+  const res = await fetch(`${await getAppBaseUrl()}/api/invoices/${id}`, {
     cache: "no-store",
+    headers: await getInternalFetchHeaders(),
   });
   if (!res.ok) return null;
   return (await res.json()) as { invoice: Invoice; items: Item[]; logs: Log[] };
